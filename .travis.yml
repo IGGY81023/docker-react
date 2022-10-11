@@ -9,6 +9,7 @@ before_install:
 
 script:
   - docker run -e CI=true stephengrider/docker-react npm run test -- --coverage
+  - gem 'aws-sdk', '~> 3'
 
 deploy:
   provider: elasticbeanstalk
@@ -19,6 +20,7 @@ deploy:
   bucket_path: "docker"
   on:
     branch: master
-  access_key_id: "$AWS_ACCESS_KEY"
+  access_key_id: $AWS_ACCESS_KEY
   secret_access_key: 
     secure: "$AWS_SECRET_ACCESS_KEY"
+
